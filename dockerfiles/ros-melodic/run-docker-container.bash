@@ -14,6 +14,7 @@ xhost +local:user
 # run command note
 #--rm Clen Up https://docs.docker.jp/engine/reference/run.html#rm
 #--net https://docs.docker.jp/engine/reference/run.html#network-settings
+#--net 
 docker run --net=host\
   --ipc=host \
   --privileged \
