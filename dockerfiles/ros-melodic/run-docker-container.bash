@@ -14,7 +14,11 @@ xhost +local:user
 # run command note
 #--rm Clen Up https://docs.docker.jp/engine/reference/run.html#rm
 #--net https://docs.docker.jp/engine/reference/run.html#network-settings
-#--net 
+#--ipc https://docs.docker.jp/engine/reference/run.html#ipc-ipc
+#--privileged https://docs.docker.jp/engine/reference/run.html#runtime-privilege-linux-capabilities 
+#-v http://docs.docker.jp/v19.03/engine/reference/commandline/run.html#v-read-only
+#-e http://docs.docker.jp/v19.03/engine/reference/commandline/run.html#e-env-env-file
+#-it --name http://docs.docker.jp/v19.03/engine/reference/commandline/run.html#tty-name-it 
 docker run --net=host\
   --ipc=host \
   --privileged \
