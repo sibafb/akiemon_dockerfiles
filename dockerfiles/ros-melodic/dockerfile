@@ -1,14 +1,54 @@
 ########## Pull ##########
 FROM osrf/ros:melodic-desktop-full
-########## ROS setup ##########
-RUN mkdir -p /home/ros_catkin_ws/src && \
-	cd /home/ros_catkin_ws/src && \
-	/bin/bash -c "source /opt/ros/melodic/setup.bash; catkin_init_workspace" && \
-	cd /home/ros_catkin_ws && \
-	/bin/bash -c "source /opt/ros/melodic/setup.bash; catkin_make" && \
-	echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc && \
-	echo "source /home/ros_catkin_ws/devel/setup.bash" >> ~/.bashrc && \
-	echo "export ROS_PACKAGE_PATH=\${ROS_PACKAGE_PATH}:/home/ros_catkin_ws" >> ~/.bashrc && \
-	echo "export ROS_WORKSPACE=/home/ros_catkin_ws" >> ~/.bashrc
+
+# Arguments
+ARG USER=initial
+ARG GROUP=initial
+ARG UID=1000
+ARG GID=${UID}
+ARG SHELL=/bin/bash
+
+# Replace apt urls
+RUN sed -i 's@archive.ubuntu.com@ftp.jaist.ac.jp/pub/Linux@g' /etc/apt/sources.list
+
+# Install packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    wget curl ssh \
+    zsh terminator gnome-terminal git vim tig \
+    dbus-x11 libglvnd0 libgl1 libglx0 libegl1 libxext6 libx11-6 \
+    python-catkin-tools \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES graphics,utility,compute
+
+# Setup users and groups
+RUN groupadd --gid ${GID} ${GROUP} \
+  && useradd --gid ${GID} --uid ${UID} -ms ${SHELL} ${USER} \
+  && mkdir -p /etc/sudoers.d \
+  && echo "${USER}:x:${UID}:${UID}:${USER},,,:$HOME:${shell}" >> /etc/passwd \
+  && echo "${USER}:x:${UID}:" >> /etc/group \
+  && echo "${USER} ALL=(ALL) NOPASSWD: ALL" > "/etc/sudoers.d/${USER}" \
+  && chmod 0440 "/etc/sudoers.d/${USER}"
+
+# copy entrypoint
+COPY entrypoint.bash /entrypoint.bash
+RUN chmod 777 /entrypoint.bash
+
+# setup terminator config
+RUN mkdir -p /home/${USER}/.config/terminator
+COPY config/terminator/config /home/${USER}/.config/terminator
+RUN sudo chown -R ${USER}:${GROUP} /home/${USER}/.config
+
+# Switch user to ${USER}
+USER ${USER}
+
+# Make SSH available
+EXPOSE 22
+
 ######### initial position ##########
-WORKDIR /home/ros_catkin_ws
+WORKDIR /home/${USER}
+
+# CMD ["terminator"]
+ENTRYPOINT ["/entrypoint.bash", "terminator"]

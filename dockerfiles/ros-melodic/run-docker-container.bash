@@ -6,7 +6,7 @@ countainar_name="ros-melodic-multi-turtle"
 user=`id -un`
 
 # start sharing xhost
-xhost +local:user
+xhost +local:root
 
 # run docker
 # ref https://docs.docker.jp/engine/reference/index.html
@@ -22,10 +22,11 @@ xhost +local:user
 docker run --net=host\
   --ipc=host \
   --privileged \
+  --gpus all \
   -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
   -v $HOME/.Xauthority:$docker/.Xauthority \
   -v $HOME/work:$HOME/work \
   -e XAUTHORITY=$home_folder/.Xauthority \
   -e DISPLAY=$DISPLAY \
   -e QT_X11_NO_MITSHM=1 \
-  -it --name ${countainar_name} ${user}/ros-bionic-melodic
+  -it --name ${countainar_name} ${user}/ros-bionic-melodic-standard 
