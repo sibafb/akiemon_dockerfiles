@@ -23,6 +23,7 @@ docker run --net=host\
   --ipc=host \
   --privileged \
   --gpus all \
+  --device=/dev/ttyUSB0:/dev/ttyUSB0
   -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
   -v $HOME/.Xauthority:$docker/.Xauthority \
   -v $HOME/work:$HOME/work \
