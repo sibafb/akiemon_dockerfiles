@@ -59,6 +59,10 @@ RUN sudo apt-get install ros-melodic-turtlebot3-*
 # setup move_base packages
 RUN sudo apt-get install -y ros-melodic-amcl ros-melodic-move-base ros-melodic-map-server ros-melodic-dwa-local-planner
 
+# setup rosserial
+RUN sudo apt-get install ros-melodic-rosserial-arduino
+RUN sudo apt-get install ros-melodic-rosserial
+
 ## sudo apt_get install tf2_tools
 ## sudo apt install ros-melodic-geometry2
 
