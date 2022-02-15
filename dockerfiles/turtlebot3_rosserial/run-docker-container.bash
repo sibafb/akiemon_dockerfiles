@@ -1,6 +1,6 @@
 #!/bin/bash
 
-countainar_name="ros-melodic-multi-turtle"
+countainar_name="ros-melodic-turtlebot-rosserial"
 
 # get parameter from system
 user=`id -un`
@@ -23,11 +23,12 @@ docker run --net=host\
   --ipc=host \
   --privileged \
   --gpus all \
-  --device=/dev/ttyUSB0:/dev/ttyUSB0
+  --device=/dev/ttyUSB0:/dev/ttyUSB0:rwm\
   -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
   -v $HOME/.Xauthority:$docker/.Xauthority \
   -v $HOME/work:$HOME/work \
   -e XAUTHORITY=$home_folder/.Xauthority \
   -e DISPLAY=$DISPLAY \
   -e QT_X11_NO_MITSHM=1 \
-  -it --name ${countainar_name} ${user}/ros-bionic-melodic-standard 
+  -p 11411:11411 \
+  -it --name ${countainar_name} ${user}/ros-melodic-turtlebot-rosserial
