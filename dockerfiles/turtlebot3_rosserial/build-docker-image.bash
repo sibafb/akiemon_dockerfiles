@@ -11,7 +11,7 @@ uid=`id -u`
 gid=`id -g`
 
 # build docker images
-docker build -t ${user}/ros-bionic-melodic-standard \
+docker build -t ${user}/ros-melodic-turtlebot-rosserial \
     --build-arg USER=${user} \
     --build-arg UID=${uid} \
     --build-arg GROUP=${group} \
