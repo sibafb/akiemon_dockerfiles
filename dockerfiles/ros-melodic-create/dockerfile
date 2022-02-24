@@ -50,5 +50,64 @@ EXPOSE 22
 ######### initial position ##########
 WORKDIR /home/${USER}
 
+RUN sudo apt-get update
+
+RUN sudo apt-get install -y python-rosdep python-catkin-tools libqt4-dev
+
+RUN mkdir -p ~/catkin_ws/src
+
+RUN sudo chown -R ${USER} ~/catkin_ws/
+
+WORKDIR /home/aki-local/catkin_ws
+
+RUN bash /opt/ros/melodic/setup.bash
+
+RUN catkin config --extend /opt/ros/melodic
+
+RUN bash /opt/ros/melodic/setup.bash && catkin init
+
+RUN bash /opt/ros/melodic/setup.bash && catkin build
+
+RUN cd ~/catkin_ws/src && git clone https://github.com/RoboticaUtnFrba/libcreate.git
+
+RUN cd ~/catkin_ws/src/libcreate && git checkout 2.1.0
+
+RUN cd ~/catkin_ws/src && git clone https://github.com/RoboticaUtnFrba/create_autonomy.git
+
+RUN cd ~/catkin_ws/src/create_autonomy && git checkout a522e080f267253fa2cba237ad32df5132c9aeb5
+
+RUN cd ~/catkin_ws && ./src/create_autonomy/sensors/ca_imu/scripts/install_rtimulib.sh
+
+WORKDIR /home/aki-local/catkin_ws
+
+RUN sudo apt install -y python3-vcstool
+
+RUN vcs import src < src/create_autonomy/dependencies.repos
+
+RUN rosdep update
+
+RUN rosdep install --from-paths src -yi
+
+RUN cd ~/catkin_ws && catkin build -DCMAKE_BUILD_TYPE=Release
+
+RUN cat << EOS >> ~/.bashrc
+
+RUN export GAZEBO_IP=127.0.0.1
+
+RUN export LASER=rplidar
+
+RUN export NUM_ROBOTS=1
+
+RUN export RVIZ=true
+
+RUN source /opt/ros/melodic/setup.bash
+
+RUN source ~/catkin_ws/devel/setup.bash
+
+RUN EOS
+
+RUN EOS
+RUN source ~/.bashrc
+
 # CMD ["terminator"]
 ENTRYPOINT ["/entrypoint.bash", "terminator"]
