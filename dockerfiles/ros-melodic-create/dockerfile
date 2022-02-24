@@ -100,14 +100,9 @@ RUN export NUM_ROBOTS=1
 
 RUN export RVIZ=true
 
-RUN source /opt/ros/melodic/setup.bash
+RUN bash /opt/ros/melodic/setup.bash
 
-RUN source ~/catkin_ws/devel/setup.bash
-
-RUN EOS
-
-RUN EOS
-RUN source ~/.bashrc
+RUN bash ~/catkin_ws/devel/setup.bash
 
 # CMD ["terminator"]
 ENTRYPOINT ["/entrypoint.bash", "terminator"]

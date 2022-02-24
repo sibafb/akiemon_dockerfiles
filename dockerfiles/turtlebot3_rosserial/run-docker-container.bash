@@ -1,6 +1,6 @@
 #!/bin/bash
 
-countainar_name="ros-melodic-turtlebot-rosserial2"
+countainar_name="ros-melodic-turtlebot-rosserial3"
 
 # get parameter from system
 user=`id -un`

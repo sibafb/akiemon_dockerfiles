@@ -1,6 +1,6 @@
 #!/bin/bash
 
-countainar_name="ros-melodic-multi-turtle"
+countainar_name="ros-melodic-create"
 
 # get parameter from system
 user=`id -un`
@@ -19,8 +19,7 @@ xhost +local:root
 #-v http://docs.docker.jp/v19.03/engine/reference/commandline/run.html#v-read-only
 #-e http://docs.docker.jp/v19.03/engine/reference/commandline/run.html#e-env-env-file
 #-it --name http://docs.docker.jp/v19.03/engine/reference/commandline/run.html#tty-name-it 
-docker run --net=host\
-  --ipc=host \
+docker run --ipc=host \
   --privileged \
   --gpus all \
   -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
@@ -29,4 +28,4 @@ docker run --net=host\
   -e XAUTHORITY=$home_folder/.Xauthority \
   -e DISPLAY=$DISPLAY \
   -e QT_X11_NO_MITSHM=1 \
-  -it --name ${countainar_name} ${user}/ros-bionic-melodic-standard 
+  -it --name ${countainar_name} ${user}/ros-bionic-melodic-create
