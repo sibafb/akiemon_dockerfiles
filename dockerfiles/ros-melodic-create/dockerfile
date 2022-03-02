@@ -47,12 +47,17 @@ USER ${USER}
 # Make SSH available
 EXPOSE 22
 
+
 ######### initial position ##########
 WORKDIR /home/${USER}
 
 RUN sudo apt-get update
 
 RUN sudo apt-get install -y python-rosdep python-catkin-tools libqt4-dev
+
+# setup rosserial
+RUN sudo apt-get install -y ros-melodic-rosserial-arduino
+RUN sudo apt-get install -y ros-melodic-rosserial
 
 RUN mkdir -p ~/catkin_ws/src
 
