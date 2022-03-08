@@ -1,5 +1,5 @@
 ########## Pull ##########
-FROM osrf/ros:melodic-desktop-full
+FROM ros:melodic-perception
 
 # Arguments
 ARG USER=initial
