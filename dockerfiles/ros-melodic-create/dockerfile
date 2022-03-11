@@ -1,5 +1,5 @@
 ########## Pull ##########
-FROM osrf/ros:melodic-desktop-full
+FROM ros:melodic-perception
 
 # Arguments
 ARG USER=initial
@@ -63,7 +63,7 @@ RUN mkdir -p ~/catkin_ws/src
 
 RUN sudo chown -R ${USER} ~/catkin_ws/
 
-WORKDIR /home/aki-local/catkin_ws
+WORKDIR /home/${USER}/catkin_ws
 
 RUN bash /opt/ros/melodic/setup.bash
 
@@ -83,7 +83,7 @@ RUN cd ~/catkin_ws/src/create_autonomy && git checkout a522e080f267253fa2cba237a
 
 RUN cd ~/catkin_ws && ./src/create_autonomy/sensors/ca_imu/scripts/install_rtimulib.sh
 
-WORKDIR /home/aki-local/catkin_ws
+WORKDIR /home/${USER}/catkin_ws
 
 RUN sudo apt install -y python3-vcstool
 
@@ -93,7 +93,7 @@ RUN rosdep update
 
 RUN rosdep install --from-paths src -yi
 
-RUN cd ~/catkin_ws && catkin build -DCMAKE_BUILD_TYPE=Release
+RUN cd ~/catkin_ws && catkin build ca_gazebo ca_driver -DCMAKE_BUILD_TYPE=Release -DRAM_CROSS_COMPILATION=ON -j 1
 
 RUN cat << EOS >> ~/.bashrc
 
