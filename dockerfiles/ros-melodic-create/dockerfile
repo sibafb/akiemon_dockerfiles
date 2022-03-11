@@ -93,7 +93,7 @@ RUN rosdep update
 
 RUN rosdep install --from-paths src -yi
 
-RUN cd ~/catkin_ws && catkin build -DCMAKE_BUILD_TYPE=Release -DRAM_CROSS_COMPILATION=ON -j 1
+RUN cd ~/catkin_ws && catkin build ca_gazebo ca_driver -DCMAKE_BUILD_TYPE=Release -DRAM_CROSS_COMPILATION=ON -j 1
 
 RUN cat << EOS >> ~/.bashrc
 
