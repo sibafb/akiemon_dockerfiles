@@ -47,7 +47,7 @@ roslaunch ca_gazebo create_house.launch
 roslaunch ca_tools rviz.launch
 ```
 
-− RViz の2D Nav Goalから ゴールポイントを指定すると、動作する。
+- RViz の2D Nav Goalから ゴールポイントを指定すると、動作する。
 
 # トラブルシュート
 
@@ -58,7 +58,7 @@ roslaunch ca_tools rviz.launch
 - ImuのLibraryエラー
 
 - 以下のエラー
-  − 現状未解決、RVizの参照Topicから外せば良い。
+  - 現状未解決、RVizのDisplay Topicから外せば出なくなる。
 ```
 [ERROR] [1647763450.270201498, 1182.706000000]: PluginlibFactory: The plugin for class 'rviz_plugin_tutorials/Imu' failed to load.  Error: According to the loaded plugin descriptions the class rviz_plugin_tutorials/Imu with base class type rviz::Display does not exist. Declared types are  rtabmap_ros/Info rtabmap_ros/MapCloud rtabmap_ros/MapGraph rviz/Axes rviz/Camera rviz/DepthCloud rviz/Effort rviz/FluidPressure rviz/Grid rviz/GridCells rviz/Illuminance rviz/Image rviz/InteractiveMarkers rviz/LaserScan rviz/Map rviz/Marker rviz/MarkerArray rviz/Odometry rviz/Path rviz/PointCloud rviz/PointCloud2 rviz/PointStamped rviz/Polygon rviz/Pose rviz/PoseArray rviz/PoseWithCovariance rviz/Range rviz/RelativeHumidity rviz/RobotModel rviz/TF rviz/Temperature rviz/WrenchStamped
 ```
