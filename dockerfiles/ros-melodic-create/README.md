@@ -9,14 +9,14 @@
 .build-docker-image.bash
 ```
 
-− run-docker-image.bashをエディタで開き、countainar_nameの値を書き換える。
+- run-docker-image.bashをエディタで開き、countainar_nameの値を書き換える。
 
-− 初回起動
+- 初回起動
 ``` 
 ./run-docker-image.bash
 ```
 
-− 一度起動したあとは、Docker のコマンドで起動する。
+- 一度起動したあとは、Docker のコマンドで起動する。
 
 ```
 docker start countainar_name
