@@ -28,6 +28,13 @@ docker start countainar_name
 
 参考:[HARD2021：シミュレータで地図作成からナビゲーションまでしよう！](https://demura.net/robot/hard/20061.html)
 
+- 環境変数を設定する。（起動モードを環境変数で切り替える設定になっている。）
+
+```
+export LOCALIZATION=amcl
+export RVIZ_CONFIG=navigation
+```
+
 - Gazebo worldを起動する。
 　※worldは起動したいものに書き換える
 
