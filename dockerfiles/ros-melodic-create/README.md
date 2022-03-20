@@ -26,3 +26,15 @@ docker start countainar_name
 
 ## Navigationまで
 
+参考:[HARD2021：シミュレータで地図作成からナビゲーションまでしよう！](https://demura.net/robot/hard/20061.html)
+
+- Gazebo worldを起動する。
+
+```
+roslaunch ca_gazebo create_house.launch
+```
+
+- rviz の起動
+```
+roslaunch ca_tools rviz.launch
+```
