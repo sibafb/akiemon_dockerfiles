@@ -29,6 +29,7 @@ docker start countainar_name
 参考:[HARD2021：シミュレータで地図作成からナビゲーションまでしよう！](https://demura.net/robot/hard/20061.html)
 
 - Gazebo worldを起動する。
+　※worldは起動したいものに書き換える
 
 ```
 roslaunch ca_gazebo create_house.launch
@@ -38,3 +39,5 @@ roslaunch ca_gazebo create_house.launch
 ```
 roslaunch ca_tools rviz.launch
 ```
+
+# トラブルシュート
