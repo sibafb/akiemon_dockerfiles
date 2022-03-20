@@ -55,6 +55,17 @@ roslaunch ca_tools rviz.launch
   - createのライブラリが名前空間を/create1としているのでデフォルトのrvizの２D Nav Goalだと反応しない
   - RViz -> Panels -> Tool Properties から 2D Nav GoalのTopicを、 /move_base_simple/goal -> /create1/move_base_simple/goal と変更
 
+- launch時のエラー
+  - 以下のようなエラー, source していないので行う
+```
+RLException: [create_house.launch] is neither a launch file in package [ca_gazebo] nor is [ca_gazebo] a launch file name
+The traceback for the exception was written to the log file
+```
+
+```
+source devel/setup.bash
+```
+
 - ImuのLibraryエラー
 
 - 以下のエラー
