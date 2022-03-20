@@ -47,6 +47,8 @@ roslaunch ca_gazebo create_house.launch
 roslaunch ca_tools rviz.launch
 ```
 
+− RViz の2D Nav Goalから ゴールポイントを指定すると、動作する。
+
 # トラブルシュート
 
 - GoalをPublishしてもNavigationが走らない
