@@ -1,6 +1,6 @@
 #!/bin/bash
 
-countainar_name="ros-melodic-create2"
+countainar_name="ros-melodic-create"
 
 # get parameter from system
 user=`id -un`
