@@ -1,6 +1,6 @@
 #!/bin/bash
 
-countainar_name="ros-melodic-create2"
+countainar_name="ros-melodic-create"
 
 # get parameter from system
 user=`id -un`
@@ -28,5 +28,5 @@ docker run --ipc=host \
   -e XAUTHORITY=$home_folder/.Xauthority \
   -e DISPLAY=$DISPLAY \
   -e QT_X11_NO_MITSHM=1 \
-  -p 11411:11411 \
+  -p 11311:11311 \
   -it --name ${countainar_name} ${user}/ros-bionic-melodic-create
