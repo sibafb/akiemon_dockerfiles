@@ -59,6 +59,10 @@ RUN sudo apt-get install -y python-rosdep python-catkin-tools libqt4-dev
 RUN sudo apt-get install -y ros-melodic-rosserial-arduino
 RUN sudo apt-get install -y ros-melodic-rosserial
 
+RUN sudo apt-get install ros-$ROS_DISTRO-rosbridge-suite
+RUN sudo apt-get install ros-$ROS_DISTRO-roswww
+
+
 RUN mkdir -p ~/catkin_ws/src
 
 RUN sudo chown -R ${USER} ~/catkin_ws/
