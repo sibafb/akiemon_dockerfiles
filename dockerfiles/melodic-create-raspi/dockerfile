@@ -20,6 +20,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
+RUN sudo apt-get update 
+RUN sudo apt-get install -y iputils-ping net-tools
+
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES graphics,utility,compute
 
@@ -60,8 +63,8 @@ RUN sudo apt-get install -y ros-melodic-rosserial-arduino
 RUN sudo apt-get install -y ros-melodic-rosserial
 
 # install rosbridge
-#RUN sudo apt-get install -y ros-melodic-rosbridge-suite
-#RUN sudo apt-get install -y ros-melodic-roswww
+RUN sudo apt-get install -y ros-melodic-rosbridge-suite
+RUN sudo apt-get install -y ros-melodic-roswww
 
 # install pip(2.7)
 RUN curl -kL  https://bootstrap.pypa.io/pip/2.7/get-pip.py | sudo python
