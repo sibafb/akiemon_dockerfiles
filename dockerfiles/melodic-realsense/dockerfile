@@ -62,5 +62,10 @@ RUN sudo apt-get install -y librealsense2-dev
 RUN sudo apt-get install -y librealsense2-dbg
 RUN sudo apt-get install -y v4l-utils 
 
+
+# make catkin_ws
+RUN mkdir -p ~/catkin_ws/src
+RUN sudo chown -R ${USER} ~/catkin_ws/
+
 # CMD ["terminator"]
 ENTRYPOINT ["/entrypoint.bash", "terminator"]
