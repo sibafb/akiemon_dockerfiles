@@ -57,13 +57,18 @@ RUN sudo apt-get update
 
 RUN sudo apt-get install -y python-rosdep python-catkin-tools libqt4-dev
 
-# setup rosserial
+# install rosserial
 RUN sudo apt-get install -y ros-melodic-rosserial-arduino
 RUN sudo apt-get install -y ros-melodic-rosserial
 
+# install rosbridge
 RUN sudo apt-get install ros-$ROS_DISTRO-rosbridge-suite
 RUN sudo apt-get install ros-$ROS_DISTRO-roswww
 
+# install pip(2.7)
+RUN curl -kL  https://bootstrap.pypa.io/pip/2.7/get-pip.py | sudo python
+RUN sudo pip install roslibpy
+RUN sudo pip install service_identity
 
 RUN mkdir -p ~/catkin_ws/src
 
