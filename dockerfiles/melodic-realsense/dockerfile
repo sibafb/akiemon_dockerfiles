@@ -59,7 +59,7 @@ RUN sudo add-apt-repository "deb https://librealsense.intel.com/Debian/apt-repo 
 RUN sudo apt-get install -y librealsense2-dkms
 RUN sudo apt-get install -y librealsense2-utils
 RUN sudo apt-get install -y librealsense2-dev
-RUN sudo apt-get install -y librealsense2-dbg./
+RUN sudo apt-get install -y librealsense2-dbg
 RUN sudo apt-get install -y v4l-utils 
 
 # CMD ["terminator"]
