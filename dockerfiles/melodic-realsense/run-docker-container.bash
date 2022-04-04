@@ -21,6 +21,7 @@ xhost +local:root
 #-it --name http://docs.docker.jp/v19.03/engine/reference/commandline/run.html#tty-name-it 
 docker run --net=host\
   --ipc=host \
+  --volume=/dev:/dev \
   --privileged \
   --gpus all \
   -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
