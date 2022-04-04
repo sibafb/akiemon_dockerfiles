@@ -41,6 +41,9 @@ RUN mkdir -p /home/${USER}/.config/terminator
 COPY config/terminator/config /home/${USER}/.config/terminator
 RUN sudo chown -R ${USER}:${GROUP} /home/${USER}/.config
 
+# 
+RUN sudo apt-get -y install usbutils
+
 # Switch user to ${USER}
 USER ${USER}
 
