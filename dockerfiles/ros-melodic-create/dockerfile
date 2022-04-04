@@ -20,6 +20,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
+RUN sudo apt-get install iputils-ping net-tools
+
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES graphics,utility,compute
 
@@ -58,6 +60,10 @@ RUN sudo apt-get install -y python-rosdep python-catkin-tools libqt4-dev
 # setup rosserial
 RUN sudo apt-get install -y ros-melodic-rosserial-arduino
 RUN sudo apt-get install -y ros-melodic-rosserial
+
+RUN sudo apt-get install ros-$ROS_DISTRO-rosbridge-suite
+RUN sudo apt-get install ros-$ROS_DISTRO-roswww
+
 
 RUN mkdir -p ~/catkin_ws/src
 
