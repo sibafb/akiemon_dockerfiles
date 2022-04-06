@@ -1,0 +1,71 @@
+########## Pull ##########
+FROM osrf/ros:melodic-desktop-full
+
+# Arguments
+ARG USER=initial
+ARG GROUP=initial
+ARG UID=1000
+ARG GID=${UID}
+ARG SHELL=/bin/bash
+
+# Replace apt urls
+RUN sed -i 's@archive.ubuntu.com@ftp.jaist.ac.jp/pub/Linux@g' /etc/apt/sources.list
+
+# Install packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    wget curl ssh \
+    zsh terminator gnome-terminal git vim tig \
+    dbus-x11 libglvnd0 libgl1 libglx0 libegl1 libxext6 libx11-6 \
+    python-catkin-tools \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES graphics,utility,compute
+
+# Setup users and groups
+RUN groupadd --gid ${GID} ${GROUP} \
+  && useradd --gid ${GID} --uid ${UID} -ms ${SHELL} ${USER} \
+  && mkdir -p /etc/sudoers.d \
+  && echo "${USER}:x:${UID}:${UID}:${USER},,,:$HOME:${shell}" >> /etc/passwd \
+  && echo "${USER}:x:${UID}:" >> /etc/group \
+  && echo "${USER} ALL=(ALL) NOPASSWD: ALL" > "/etc/sudoers.d/${USER}" \
+  && chmod 0440 "/etc/sudoers.d/${USER}"
+
+# copy entrypoint
+COPY entrypoint.bash /entrypoint.bash
+RUN chmod 777 /entrypoint.bash
+
+# setup terminator config
+RUN mkdir -p /home/${USER}/.config/terminator
+COPY config/terminator/config /home/${USER}/.config/terminator
+RUN sudo chown -R ${USER}:${GROUP} /home/${USER}/.config
+
+# Switch user to ${USER}
+USER ${USER}
+
+# Make SSH available
+EXPOSE 22
+
+######### initial position ##########
+WORKDIR /home/${USER}
+
+# install realsense
+# https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md#installing-the-packages
+RUN sudo apt-get update 
+RUN sudo apt-get install -y software-properties-common
+RUN sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE || sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE
+RUN sudo add-apt-repository "deb https://librealsense.intel.com/Debian/apt-repo $(lsb_release -cs) main" -u
+RUN sudo apt-get install -y librealsense2-dkms
+RUN sudo apt-get install -y librealsense2-utils
+RUN sudo apt-get install -y librealsense2-dev
+RUN sudo apt-get install -y librealsense2-dbg
+RUN sudo apt-get install -y v4l-utils 
+
+
+# make catkin_ws
+RUN mkdir -p ~/catkin_ws/src
+RUN sudo chown -R ${USER} ~/catkin_ws/
+
+# CMD ["terminator"]
+ENTRYPOINT ["/entrypoint.bash", "terminator"]
