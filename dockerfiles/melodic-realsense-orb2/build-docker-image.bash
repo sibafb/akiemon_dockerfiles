@@ -2,7 +2,7 @@
 
 file_dir=`dirname $0`
 
-imege_name="melodic-realsense"
+imege_name="melodic-realsense-orb2"
 
 # get parameter from system
 user=`id -un`

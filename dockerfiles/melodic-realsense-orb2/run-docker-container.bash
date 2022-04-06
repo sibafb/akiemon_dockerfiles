@@ -1,8 +1,8 @@
 #!/bin/bash
 
-countainar_name="melodic-realsense"
+countainar_name="melodic-realsense-orb2"
 
-imege_name="melodic-realsense"
+imege_name="melodic-realsense-orb2"
 
 # get parameter from system
 user=`id -un`
