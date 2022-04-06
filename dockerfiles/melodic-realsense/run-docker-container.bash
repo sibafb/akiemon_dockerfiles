@@ -2,6 +2,8 @@
 
 countainar_name="melodic-realsense"
 
+imege_name="melodic-realsense"
+
 # get parameter from system
 user=`id -un`
 
@@ -30,4 +32,4 @@ docker run --net=host\
   -e XAUTHORITY=$home_folder/.Xauthority \
   -e DISPLAY=$DISPLAY \
   -e QT_X11_NO_MITSHM=1 \
-  -it --name ${countainar_name} ${user}/ros-bionic-melodic-standard 
+  -it --name ${countainar_name} ${user}/${imege_name}
