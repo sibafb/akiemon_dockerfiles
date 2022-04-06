@@ -1,6 +1,6 @@
 #!/bin/bash
 
-countainar_name="ros-melodic-create"
+countainar_name="melodic-create"
 
 # get parameter from system
 user=`id -un`
@@ -20,6 +20,9 @@ xhost +local:root
 #-e http://docs.docker.jp/v19.03/engine/reference/commandline/run.html#e-env-env-file
 #-it --name http://docs.docker.jp/v19.03/engine/reference/commandline/run.html#tty-name-it 
 docker run --ipc=host \
+  --device /dev/gpiomem \
+  --device /dev/i2c-1 \
+  --device /dev/ttyACM0 \
   --privileged \
   -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
   -v $HOME/.Xauthority:$docker/.Xauthority \
@@ -30,4 +33,4 @@ docker run --ipc=host \
   -p 11311:11311 \
   -p 9090:9090 \
   -p 8085:8085 \
-  -it --name ${countainar_name} ${user}/ros-bionic-melodic-create
+  -it --name ${countainar_name} ${user}/melodic-create-raspi
