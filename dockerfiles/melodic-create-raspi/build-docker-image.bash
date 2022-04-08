@@ -11,7 +11,7 @@ uid=`id -u`
 gid=`id -g`
 
 # build docker images
-docker build -t ${user}/ros-bionic-melodic-create\
+docker build -t ${user}/${imege_name}\
     --build-arg USER=${user} \
     --build-arg UID=${uid} \
     --build-arg GROUP=${group} \

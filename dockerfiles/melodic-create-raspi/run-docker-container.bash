@@ -33,4 +33,4 @@ docker run --ipc=host \
   -p 11311:11311 \
   -p 9090:9090 \
   -p 8085:8085 \
-  -it --name ${countainar_name} ${user}/melodic-create-raspi
+  -it --name ${countainar_name} ${user}/${imege_name}
