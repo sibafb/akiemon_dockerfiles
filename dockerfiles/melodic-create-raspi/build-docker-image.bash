@@ -2,7 +2,7 @@
 
 file_dir=`dirname $0`
 
-imege_name="ros-melodic-create"
+imege_name="melodic-create-raspi"
 
 # get parameter from system
 user=`id -un`
@@ -11,7 +11,7 @@ uid=`id -u`
 gid=`id -g`
 
 # build docker images
-docker build -t ${user}/ros-bionic-melodic-create\
+docker build -t ${user}/${imege_name}\
     --build-arg USER=${user} \
     --build-arg UID=${uid} \
     --build-arg GROUP=${group} \
