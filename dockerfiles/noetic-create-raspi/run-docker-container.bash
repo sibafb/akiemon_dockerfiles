@@ -1,6 +1,8 @@
 #!/bin/bash
 
-countainar_name="melodic-create"
+countainar_name="noetic-create"
+
+imege_name="noetic-create"
 
 # get parameter from system
 user=`id -un`
@@ -33,4 +35,4 @@ docker run --ipc=host \
   -p 11311:11311 \
   -p 9090:9090 \
   -p 8085:8085 \
-  -it --name ${countainar_name} ${user}/melodic-create-raspi
+  -it --name ${imege_name} ${user}/${countainar_name}
