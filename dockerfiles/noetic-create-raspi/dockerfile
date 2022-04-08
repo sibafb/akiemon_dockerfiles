@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     wget curl ssh \
     zsh terminator gnome-terminal git vim tig \
     dbus-x11 libglvnd0 libgl1 libglx0 libegl1 libxext6 libx11-6 \
+    python3-osrf-pycommon python3-catkin-tools\
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
@@ -95,11 +96,13 @@ RUN sudo apt install -y python3-vcstool
 
 RUN vcs import src < src/create_autonomy/dependencies.repos
 
+RUN sudo apt install -y python3-rosdep
+
 RUN rosdep update
 
-RUN rosdep install --from-paths src -yi
+#RUN rosdep install --from-paths src -yi
 
-RUN cd ~/catkin_ws && catkin build ca_gazebo ca_driver -DCMAKE_BUILD_TYPE=Release -DRAM_CROSS_COMPILATION=ON -j 2
+#RUN cd ~/catkin_ws && catkin build ca_gazebo ca_driver -DCMAKE_BUILD_TYPE=Release -DRAM_CROSS_COMPILATION=ON -j 2
 
 RUN cat << EOS >> ~/.bashrc
 
