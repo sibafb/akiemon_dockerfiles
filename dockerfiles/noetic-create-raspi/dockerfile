@@ -58,12 +58,10 @@ WORKDIR /home/${USER}
 
 RUN sudo apt-get update
 
-RUN sudo apt-get install python3
-RUN sudo apt install python-is-python3
+RUN sudo apt-get install -y python3
+RUN sudo apt install -y python-is-python3
 
-RUN sudo apt install python3-pip
-
-RUN sudo pip3 install RPi.GPIO
+RUN sudo apt install -y python3-pip
 
 # install rosserial
 RUN sudo apt-get install -y ros-$ROS_DISTRO-rosserial-arduino
@@ -121,9 +119,9 @@ RUN export NUM_ROBOTS=1
 
 RUN export RVIZ=true
 
-RUN bash /opt/ros/$ROS_DISTRO/setup.bash
+RUN source /opt/ros/$ROS_DISTRO/setup.bash
 
-RUN bash ~/catkin_ws/devel/setup.bash
+RUN source ~/catkin_ws/devel/setup.bash
 
 # CMD ["terminator"]
 ENTRYPOINT ["/entrypoint.bash", "terminator"]
