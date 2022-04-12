@@ -119,9 +119,9 @@ RUN export NUM_ROBOTS=1
 
 RUN export RVIZ=true
 
-RUN source /opt/ros/$ROS_DISTRO/setup.bash
+RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
 
-RUN source ~/catkin_ws/devel/setup.bash
+RUN echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 
 # CMD ["terminator"]
 ENTRYPOINT ["/entrypoint.bash", "terminator"]
