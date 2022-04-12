@@ -1,6 +1,6 @@
 #!/bin/bash
 
-countainar_name="noetic-create"
+countainar_name="noetic-create3"
 
 imege_name="noetic-create"
 
@@ -23,6 +23,7 @@ xhost +local:root
 #-it --name http://docs.docker.jp/v19.03/engine/reference/commandline/run.html#tty-name-it 
 docker run --ipc=host \
   --device /dev/gpiomem \
+  --device /dev/mem \
   --device /dev/i2c-1 \
   --device /dev/ttyACM0 \
   --privileged \
@@ -35,4 +36,4 @@ docker run --ipc=host \
   -p 11311:11311 \
   -p 9090:9090 \
   -p 8085:8085 \
-  -it --name ${imege_name} ${user}/${countainar_name}
+  -it --name ${countainar_name} ${user}/${imege_name}
