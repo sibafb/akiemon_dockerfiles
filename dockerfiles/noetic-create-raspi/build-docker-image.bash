@@ -2,7 +2,7 @@
 
 file_dir=`dirname $0`
 
-imege_name="ros-melodic-create"
+imege_name="noetic-create"
 
 # get parameter from system
 user=`id -un`

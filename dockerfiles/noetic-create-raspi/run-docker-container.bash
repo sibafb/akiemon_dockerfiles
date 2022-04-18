@@ -1,6 +1,8 @@
 #!/bin/bash
 
-countainar_name="melodic-create"
+countainar_name="noetic-create4"
+
+imege_name="noetic-create"
 
 # get parameter from system
 user=`id -un`
@@ -19,8 +21,10 @@ xhost +local:root
 #-v http://docs.docker.jp/v19.03/engine/reference/commandline/run.html#v-read-only
 #-e http://docs.docker.jp/v19.03/engine/reference/commandline/run.html#e-env-env-file
 #-it --name http://docs.docker.jp/v19.03/engine/reference/commandline/run.html#tty-name-it 
-docker run --ipc=host \
+docker run --net host \
+  --ipc=host \
   --device /dev/gpiomem \
+  --device /dev/mem \
   --device /dev/i2c-1 \
   --device /dev/ttyACM0 \
   --privileged \
