@@ -1,6 +1,6 @@
 #!/bin/bash
 
-countainar_name="noetic-create4"
+countainar_name="noetic-create"
 
 imege_name="noetic-create"
 
