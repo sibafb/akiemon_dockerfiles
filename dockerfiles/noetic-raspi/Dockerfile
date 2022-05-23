@@ -54,7 +54,6 @@ USER ${USER}
 # Make SSH available
 EXPOSE 22
 
-
 ######### initial position ##########
 WORKDIR /home/${USER}
 
@@ -64,6 +63,8 @@ RUN sudo apt-get install -y python3
 RUN sudo apt install -y python-is-python3
 
 RUN sudo apt install -y python3-pip
+
+RUN sudo apt-get install -y python3-pigpio
 
 # install rosserial
 RUN sudo apt-get install -y ros-$ROS_DISTRO-rosserial-arduino
@@ -87,29 +88,15 @@ RUN bash /opt/ros/$ROS_DISTRO/setup.bash && catkin init
 
 RUN bash /opt/ros/$ROS_DISTRO/setup.bash && catkin build
 
-RUN cd ~/catkin_ws/src && git clone https://github.com/RoboticaUtnFrba/libcreate.git
-
-RUN cd ~/catkin_ws/src/libcreate && git checkout 2.1.0
-
-RUN cd ~/catkin_ws/src && git clone https://github.com/RoboticaUtnFrba/create_autonomy.git
-
-RUN cd ~/catkin_ws/src/create_autonomy && git checkout a522e080f267253fa2cba237ad32df5132c9aeb5
-
-RUN cd ~/catkin_ws && ./src/create_autonomy/sensors/ca_imu/scripts/install_rtimulib.sh
-
 WORKDIR /home/${USER}/catkin_ws
 
 RUN sudo apt install -y python3-vcstool
-
-RUN vcs import src < src/create_autonomy/dependencies.repos
 
 RUN sudo apt install -y python3-rosdep
 
 RUN rosdep update
 
-#RUN rosdep install --from-paths src -yi
-
-#RUN cd ~/catkin_ws && catkin build ca_gazebo ca_driver -DCMAKE_BUILD_TYPE=Release -DRAM_CROSS_COMPILATION=ON -j 2
+RUN rosdep install --from-paths src -yi
 
 RUN cat << EOS >> ~/.bashrc
 
