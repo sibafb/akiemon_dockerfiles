@@ -1,8 +1,8 @@
 #!/bin/bash
 
-countainar_name="noetic-create"
+countainar_name="noetic-raspi"
 
-imege_name="noetic-create"
+imege_name="noetic-raspi"
 
 # get parameter from system
 user=`id -un`
