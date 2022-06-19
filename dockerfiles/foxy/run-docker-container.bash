@@ -2,6 +2,8 @@
 
 countainar_name="foxy"
 
+image_name="foxy"
+
 # get parameter from system
 user=`id -un`
 
@@ -29,4 +31,4 @@ docker run --net=host\
   -e XAUTHORITY=$home_folder/.Xauthority \
   -e DISPLAY=$DISPLAY \
   -e QT_X11_NO_MITSHM=1 \
-  -it --name ${countainar_name} ${user}/melodic-standard 
+  -it --name ${countainar_name} ${user}/${image_name}
