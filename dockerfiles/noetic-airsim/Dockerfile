@@ -17,9 +17,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     zsh terminator gnome-terminal git vim tig \
     dbus-x11 libglvnd0 libgl1 libglx0 libegl1 libxext6 libx11-6 \
   && apt-get clean \
-  && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /var/lib/apt/lists/* 
 
-RUN apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
   ros-noetic-tf2-sensor-msgs \
   ros-noetic-tf2-geometry-msgs \
   ros-noetic-mavros*
