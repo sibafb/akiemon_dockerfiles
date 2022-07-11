@@ -26,6 +26,5 @@
       parent = window0
     [[[window0]]]
       type = Window
-      parent = ""
       title = "noetic-airsim"
 [plugins]
